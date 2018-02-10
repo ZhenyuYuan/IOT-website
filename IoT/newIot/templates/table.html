@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <!-- FontAwesome Styles-->
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <!-- Morris Chart Styles-->
+    <link href="/static/admin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/static/admin/assets/css/custom-styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index"><i class="fa fa-comments"></i> <strong>IoT设备管理</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>洪 小文</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Today</em>
+                                    </span>
+                                </div>
+                                <div>微软亚洲研究院：Beijing Hackathon即将举办！本周六在微软大厦...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>潘 天佑</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>为什么我们每个人都要具有“计算思维”？...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>刘 康平</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>女神|马拉松与MSRA Fellowship…</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>阅读全部信息</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+            
+                
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>我的账户</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>注销</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+		<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="/index"><i class="fa fa-dashboard"></i>仪表盘</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tablePage" class="active-menu"><i class="fa fa-table"></i>设备管理</a>
+                    </li>
+
+
+                    <li>
+                        <a href="/alertlog"><i class="fa fa-desktop"></i>告警记录</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            设备状态表 <small>查看所有的设备状态</small>
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+               
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             总览
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <a id="btnAdd" type="button" class="btn btn-success pull-right">添加设备</a>
+                                    <thead>
+                                        <tr>
+                                            <th>设备名称</th>
+                                            <th>序列号</th>
+                                            <th>状态</th>
+                                            <th>温度（℃）</th>
+                                            <th>温度阈值（℃）</th>
+                                            <th>最后更新时间</th>
+                                            <th>警报</th>
+                                            <th width="200px">操作</th>
+                                            <th>历史纪录</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="showList">
+                                    </tbody>
+                                </table>
+                            </div>
+<!-- Bootstrap modal -->
+<div class="modal fade" id="modal_form" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">添加设备</h3>
+            </div>
+            <div class="modal-body form">
+                <form action="#" id="form" class="form-horizontal">
+                    <input type="hidden" value="" name="id"/>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">设备名称:</label>
+                            <div class="col-md-9">
+                                <input name="Name" placeholder="设备名称" class="form-control" type="text">
+                            </div>
+                            <br><br><br>
+                             <label class="control-label col-md-3">设备序列号:</label>
+                            <div class="col-md-9">
+                                <input name="SN" placeholder="设备序列号" class="form-control" type="text">
+                            </div>
+                            <br><br><br>
+                            <label class="control-label col-md-3">温度阈值(℃):</label>
+                            <div class="col-md-9">
+                                <input name="Temrange" placeholder="温度阈值(℃)" class="form-control" type="number">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSave" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- End Bootstrap modal -->
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+                <!-- /. ROW  -->
+
+        </div>
+               <footer><p>Copyright &copy; 2016.Company name All rights reserved.</p></footer>
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="/static/admin/assets/js/jquery.metisMenu.js"></script>
+     <!-- DATA TABLE SCRIPTS -->
+    <script src="/static/admin/assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="/static/admin/assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+         <!-- Custom Js -->
+    <script src="/static/admin/assets/js/custom-scripts.js"></script>
+    <script>
+
+    $(document).ready(
+            $("#btnAdd").click(
+                    function () {
+                        save_method = 'add';
+                        $('#form')[0].reset(); // 重置form
+
+                        $('#modal_form').modal('show'); // 显示modal
+                        $('.modal-title').text('添加设备'); // 设置title
+                    }
+            ),
+            $("#btnSave").click(
+                    function () {
+                        var url;
+                        if (save_method == 'add') {
+                            url = "/api/add/";
+                        }
+                        else {
+                            url = "/api/edit/";
+                        }
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: $('#form').serialize(),
+                            dataType: "JSON",
+                            success: function (data) {
+                                //如果成功，隐藏弹出框并重新加载数据
+                                $('#modal_form').modal('hide');
+                                showListFunc();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert('新建或修改错误！请确认设备名称和序列号是否输入完整！');
+                            }
+                        })
+                    }
+            ),
+
+            $("#dataTables-example").on('click', ".btnEdit", function () {
+                        save_method = 'update';
+                        $('#form')[0].reset();
+                        $('[name="id"]').val($(this).parents("td").siblings("td.hidden").text());
+                        $('[name="Name"]').val($(this).parents("tr").find(".Name").text());
+                        $('[name="SN"]').val($(this).parents("tr").find(".SN").text());
+                        $('[name="Temrange"]').val($(this).parents("tr").find(".Temrange").text());
+                        $('#modal_form').modal('show');
+                        $('.modal-title').text('修改设备信息');
+
+                    }
+            ),
+            $("#dataTables-example").on('click', ".btnDel", function () {
+                        $.ajax({
+                            url: "/api/del/",
+                            type: "GET",
+                            data: {"id": $(this).parent("td").siblings("td.hidden").text()},
+                            dataType: "JSON",
+                            success: function (data) {
+                                //如果成功，隐藏弹出框并重新加载数据
+                                $('#modal_form').modal('hide');
+                                showListFunc();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert('删除错误！');
+                            }
+                        })
+                    }
+            ),
+            $("#dataTables-example").on('click', ".btnSwitch", function () {
+                 save_method = 'update'
+                        $.ajax({
+                            url: "/api/switch/",
+                            type: "GET",
+                            data: {"id": $(this).parent("td").siblings("td.hidden").text()},
+                            dataType: "JSON",
+                            success: function (data) {
+                                //如果成功，隐藏弹出框并重新加载数据
+                                $('#modal_form').modal('hide');
+                                showListFunc();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                alert('开关操作错误！');
+                            }
+                        })
+                    }
+            ),
+
+
+            showListFunc()
+    )
+        function showListFunc()
+            {
+                //var int=setInterval("showListFunc()",2000);
+                $.ajax({
+                    url:"/api/table",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+                        $("#dataTables-example").children("tbody").empty()
+                        var htmlstr="";
+                        for(var i=0;i<data.info.length;i++){
+                            htmlstr=htmlstr+"<tr>"+
+                                "<td class='hidden'>" + data.info[i].id + "</td>" +
+                                "<td class='Name' name='name'>"+data.info[i].Name+"</td>"+
+                                "<td class='SN' name='postSN'>"+data.info[i].SN+"</td>";
+                            if(data.info[i].Operation == 'ON')
+                                htmlstr=htmlstr+"<td class='Operation' name='Operation'>"+data.info[i].Operation+"</td>";
+                            else
+                                htmlstr=htmlstr+"<td class='Operation' name='Operation' bgcolor='lightgreen'>"+data.info[i].Operation+"</td>";
+                            htmlstr=htmlstr+
+                                "<td class='Temperature' name='temperature'>"+data.info[i].Temperature+"</td>"+
+                                "<td class='Temrange' name='temrange'>"+data.info[i].Temrange+"</td>"+
+                                "<td class='Updatetime' name='updatetime'>"+data.info[i].Updatetime+"<form id='postForm"+i+"' role='form' action='/getlog' method='POST'>"+"<input name='postSN' class='hidden' value="+data.info[i].SN+">"+"</input>"+"</form>"+"</td>";
+                            if(data.info[i].Alarm==false)
+                                htmlstr=htmlstr+"<td>"+"无警报"+"</td>";
+                            else
+                                htmlstr=htmlstr+"<td bgcolor='red'>"+"有警报"+"</td>";
+                            htmlstr=htmlstr+
+                                "<td>"+"<a type='button' class='btn btn-xs btn-success btnEdit'>编辑</a>" +
+                                "<a type='button' class='btn btn-xs btn-danger btnDel'>删除</a>"+
+                                "<a type='button' class='btn btn-xs btn-danger btnSwitch'>开关</a>"+ "</td>";
+                            htmlstr=htmlstr+"<td>"+"<button type='submit' form='postForm"+i+"' class='btn btn-xs btn-success btnLog'>历史记录</a>"+"</td>"+"</tr>";
+                         }
+                        $("#dataTables-example").children("tbody").html(htmlstr);
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+
+                    }
+                })
+            }
+    window.onload=showListFunc();
+    function cycle(){
+        var int=setInterval("showListFunc()",3000);
+    }
+    window.onload=cycle();
+    </script>
+    
+   
+</body>
+</html>

@@ -1,0 +1,515 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- Bootstrap Styles-->
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <!-- FontAwesome Styles-->
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <!-- Morris Chart Styles-->
+    <link href="/static/admin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/static/admin/assets/css/custom-styles.css" rel="stylesheet" />
+    <!--Using Echarts-->
+    <script src="/static/admin/echarts.min.js"></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index"><i class="fa fa-comments"></i> <strong>IoT设备管理</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>洪 小文</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Today</em>
+                                    </span>
+                                </div>
+                                <div>微软亚洲研究院：Beijing Hackathon即将举办！本周六在微软大厦...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>潘 天佑</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>为什么我们每个人都要具有“计算思维”？...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>刘 康平</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>女神|马拉松与MSRA Fellowship…</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>阅读全部信息</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+            
+                
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> 我的账户</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i>注销</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+		<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu" href="/index"><i class="fa fa-dashboard"></i>仪表盘</a>
+                    </li>
+                   
+                    <li>
+                        <a href="/tablePage"><i class="fa fa-table"></i>设备管理</a>
+                    </li>
+
+
+                    <li>
+                        <a href="/alertlog"><i class="fa fa-desktop"></i>告警记录</a>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            仪表盘 <small>IoT系统概要</small>
+                        </h1>
+						<ol class="breadcrumb">
+                            查看IoT系统运行状况
+                        </ol>
+                    </div>
+                </div>
+				
+				
+                <!-- /. ROW  -->
+
+
+
+                <!--表格！！-->
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-green green">
+                            <div class="panel-left pull-left green">
+                                <i class="fa fa-bar-chart-o fa-5x"></i>
+                                
+                            </div>
+                            <div class="panel-right pull-right">
+								<h3 id="showDevNum">0,000</h3>
+                               <strong > 设备请求次数</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-blue blue">
+                              <div class="panel-left pull-left blue">
+                                <i class="fa fa-check-circle-o fa-5x"></i>
+								</div>
+                                
+                            <div class="panel-right pull-right">
+							<h3 id="showNorDevNum">0,000 </h3>
+                               <strong> 设备正常</strong>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-red red">
+                            <div class="panel-left pull-left red">
+                                <i class="fa fa fa-warning fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right pull-right">
+							 <h3 id="showAlrDevNum"> 0，000 </h3>
+                               <strong> 设备异常警报 </strong>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-brown brown">
+                            <div class="panel-left pull-left brown">
+                                <i class="fa fa-list-alt fa-5x"></i>
+                                
+                            </div>
+                            <div class="panel-right pull-right">
+							<h3 id="showLogNum"> 0,000 </h3>
+                             <strong>日志正在记录</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+
+
+
+                 <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                日志摘要
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <table class="table table-striped table-bordered table-hover" id="indexlog">
+                                        <thead>
+                                            <tr>
+                                                <th>日志摘要</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                设备状态
+                            </div> 
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="showList">
+                                        <thead>
+                                            <tr>
+                                                <th>设备名称</th>
+                                                <th>序列号</th>
+                                                <th>温度</th>
+                                                <th>温度阈值</th>
+                                                <th>最后更新时间</th>
+                                                <th>警报</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-right">
+                                    <a href="/tablePage">查看完整状况<i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+				<div class="row">
+				<div class="col-md-12">
+					
+					</div>		
+				</div> 
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div>
+                                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                                <div id="main" style="width: 1600px;height:400px;"></div>
+                                <script type="text/javascript">
+                                    // 基于准备好的dom，初始化echarts实例
+                                    var myChart = echarts.init(document.getElementById('main'));
+
+                                    // 指定图表的配置项和数据
+                                    function getDevTemNum()
+                                    {
+
+                                        myChart.setOption({
+                                                    title: {
+                                                        text: '设备状态管理'
+                                                    },
+                                                    tooltip: {},
+                                                    legend: {
+                                                        data:['0-20℃','20-40℃','40-60℃','60-80℃','80-100℃']
+                                                    },
+                                                    xAxis: {
+                                                        data: []
+                                                    },
+                                                    yAxis: {},
+                                                    series: [{
+                                                        name: '数量',
+                                                        type: 'bar',
+                                                        data: []
+                                                    }]
+                                            });
+                                }
+
+
+
+                                    // 使用刚指定的配置项和数据显示图表。
+                                    //myChart.setOption(option);
+                                    window.onload=getDevTemNum();
+                                    window.onload=loadData();
+                                </script>
+                            </div>
+                        </div>  
+                     </div>		
+                </div> 
+
+                <!-- /. 这一段以后可以用  -->
+                
+
+	   
+				<footer><p>Copyright &copy; 2016.Company name All rights reserved.</p></footer>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+	 
+    <!-- Metis Menu Js -->
+    <script src="/static/admin/assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="/static/admin/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="/static/admin/assets/js/morris/morris.js"></script>
+	
+	
+	<script src="/static/admin/assets/js/easypiechart.js"></script>
+	<script src="/static/admin/assets/js/easypiechart-data.js"></script>
+	
+	
+    <!-- Custom Js -->
+    <script src="/static/admin/assets/js/custom-scripts.js"></script>
+
+    <script>
+        function showListFunc()
+            {
+                $.ajax({
+                    url:"/api/table",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+                        $("#showList").children("tbody").empty()
+                        var htmlstr=""
+                        for(var i=0;(i<5&&i<data.info.length);i++){
+                            htmlstr=htmlstr+"<tr>"+
+                                "<td class='hidden'>" + data.info[i].id + "</td>" +
+                                "<td>"+data.info[i].Name+"</td>"+
+                                "<td>"+data.info[i].SN+"</td>"+
+                                "<td>"+data.info[i].Temperature+"℃"+"</td>"+
+                                "<td>"+data.info[i].Temrange+"℃"+"</td>"+
+                                "<td>"+data.info[i].Updatetime+"</td>";
+                            if(data.info[i].Alarm==false)
+                                htmlstr=htmlstr+"<td>"+"无警报"+"</td>"+"</tr>";
+                            else
+                                htmlstr=htmlstr+"<td bgcolor='red'>"+"有警报"+"</td>"+"</tr>";
+                        }
+                        $("#showList").children("tbody").html(htmlstr);
+
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+                    }
+                })
+            }
+            window.onload=showListFunc();
+
+
+            function showIndexLogFunc()
+            {
+                $.ajax({
+                    url:"/api/indexlog",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+                        $("#indexlog").children("tbody").empty()
+                        var htmlstr=""
+                        for(var i=0;i<4;i++){
+                            htmlstr=htmlstr+"<tr>"+
+                                "<td>"+"序列号为"+data.info[i].SN+"的设备温度更新为"+data.info[i].Temperature+"℃"+
+                                "<span class='badge'>"+data.info[i].Updatetime+"</span>"+"</td>";
+                        }
+                        $("#indexlog").children("tbody").html(htmlstr);
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+                    }
+                })
+            }
+            window.onload=showIndexLogFunc();
+
+
+            function showDeviceNumFunc()
+            {
+                $.ajax({
+                    url:"/api/showDevNum",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+
+                        var htmlstr=""
+                        htmlstr=htmlstr+data.info;
+                        $("#showDevNum").html(htmlstr);
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+                    }
+                })
+            }
+            window.onload=showDeviceNumFunc();
+
+
+            function showLogNumFunc()
+            {
+                $.ajax({
+                    url:"/api/showLogNum",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+
+                        var htmlstr=""
+                        htmlstr=htmlstr+data.info;
+                        $("#showLogNum").html(htmlstr);
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+                    }
+                })
+            }
+            window.onload=showLogNumFunc();
+
+            function showNorDevNumFunc()
+            {
+                $.ajax({
+                    url:"/api/showNorDevNum",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+                        var htmlstr=""
+                        htmlstr=htmlstr+data.info;
+                        $("#showNorDevNum").html(htmlstr);
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+                    }
+                })
+            }
+            window.onload=showNorDevNumFunc();
+
+
+            function loadData()
+                                {
+                                    $.ajax({
+                                        url:"/getDevTemNum",
+                                        type:"GET",
+
+                                        dataType:"JSON",
+                                        success: function (data) {
+                                            myChart.setOption({
+                                                xAxis: {
+                                                    data: data.catagories
+                                                },
+                                                series: [{
+                                                    // 根据名字对应到相应的系列
+                                                    name: '数量',
+                                                    data: data.data
+                                                }]
+                                            });
+                                        },
+                                        error:function (jqXHR,textStatus,errorThrown) {
+                                        }
+                                    })
+                                }
+            window.onload=loadData();
+
+            function showAlrDevNumFunc()
+            {
+                $.ajax({
+                    url:"/api/showAlrDevNum",
+                    type:"GET",
+
+                    dataType:"JSON",
+                    success: function (data) {
+                        var htmlstr=""
+                        htmlstr=htmlstr+data.info;
+                        $("#showAlrDevNum").html(htmlstr);
+                    },
+                    error:function (jqXHR,textStatus,errorThrown) {
+                    }
+                })
+            }
+            window.onload=showAlrDevNumFunc();
+
+    </script>
+
+
+</body>
+
+</html>
